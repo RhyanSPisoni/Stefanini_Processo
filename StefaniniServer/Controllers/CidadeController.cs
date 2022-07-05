@@ -7,15 +7,15 @@ using StefaniniServer.Views;
 namespace StefaniniServer.Controllers
 {
     [ApiController]
-    [Route("People")]
-    public class PersonController : ControllerBase
+    [Route("Cities")]
+    public class CidadeController : ControllerBase
     {
         [HttpGet]
-        public async Task<List<PersonView>> SearchPeople()
+        public async Task<List<CityView>> SearchCities()
         {
             try
             {
-                return await Services.ServPerson.SearchPeople();
+                return await Services.ServCity.SearchCities();
             }
             catch (Exception e)
             {
@@ -26,11 +26,11 @@ namespace StefaniniServer.Controllers
 
         [HttpGet]
         [Route("Search")]
-        public async Task<List<PersonView>> SearchListPeople(List<int> ids)
+        public async Task<List<CityView>> SearchListCities(List<int> ids)
         {
             try
             {
-                return await Services.ServPerson.SearchListPeople(ids);
+                return await Services.ServCity.SearchListCities(ids);
             }
             catch (Exception e)
             {
@@ -41,11 +41,11 @@ namespace StefaniniServer.Controllers
 
         [HttpPost]
         [Route("New")]
-        public async Task<Confirmation> NewPeople([FromBody] List<Pessoa> person)
+        public async Task<Confirmation> NewCities([FromBody] List<Cidade> city)
         {
             try
             {
-                return await Services.ServPerson.NewPeople(person);
+                return await Services.ServCity.NewCities(city);
             }
             catch (Exception e)
             {
@@ -56,11 +56,11 @@ namespace StefaniniServer.Controllers
 
         [HttpPatch]
         [Route("Update")]
-        public async Task<Confirmation> UpdatePeople([FromBody] PessoaDTO person)
+        public async Task<Confirmation> UpdateCities([FromBody] CidadeDTO city)
         {
             try
             {
-                return await Services.ServPerson.UpdatePeople(person);
+                return await Services.ServCity.UpdateCities(city);
             }
             catch (Exception e)
             {
@@ -70,11 +70,11 @@ namespace StefaniniServer.Controllers
 
         [HttpDelete]
         [Route("Delete")]
-        public async Task<Confirmation> DeletePeople([FromRoute] int id)
+        public async Task<Confirmation> DeleteCities([FromRoute] int id)
         {
             try
             {
-                return await Services.ServPerson.DeletePeople(id);
+                return await Services.ServCity.DeleteCities(id);
             }
             catch (Exception e)
             {

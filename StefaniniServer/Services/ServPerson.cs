@@ -7,9 +7,9 @@ using StefaniniServer.Views;
 
 namespace StefaniniServer.Services
 {
-    public class ServPessoa
+    public class ServPerson
     {
-        internal async static Task<List<PessoaView>> SearchPeople()
+        internal async static Task<List<PersonView>> SearchPeople()
         {
             try
             {
@@ -17,7 +17,7 @@ namespace StefaniniServer.Services
                 {
                     return await Db.Pessoas
                                 .AsNoTracking()
-                                .Select(x => new PessoaView
+                                .Select(x => new PersonView
                                 {
                                     Id = x.Id,
                                     Nome = x.Nome,
@@ -34,7 +34,7 @@ namespace StefaniniServer.Services
             }
         }
 
-        internal async static Task<List<PessoaView>> SearchListPeople(List<int> ids)
+        internal async static Task<List<PersonView>> SearchListPeople(List<int> ids)
         {
             try
             {
@@ -42,7 +42,7 @@ namespace StefaniniServer.Services
                 {
                     return await Db.Pessoas
                                 .AsNoTracking()
-                                .Select(x => new PessoaView
+                                .Select(x => new PersonView
                                 {
                                     Id = x.Id,
                                     Nome = x.Nome,
@@ -60,13 +60,13 @@ namespace StefaniniServer.Services
             }
         }
 
-        internal async static Task<Confirmation> NewPeople(List<Pessoa> pessoa)
+        internal async static Task<Confirmation> NewPeople(List<Pessoa> person)
         {
             try
             {
                 await using (var Db = new devStefaniniContext())
                 {
-                    pessoa.ForEach(e =>
+                    person.ForEach(e =>
                     {
                         Db.Pessoas.AddAsync(e);
                     });
@@ -82,7 +82,7 @@ namespace StefaniniServer.Services
             }
         }
 
-        internal static async Task<Confirmation> UpdatePeople(PessoaDTO pessoa)
+        internal static async Task<Confirmation> UpdatePeople(PessoaDTO person)
         {
             try
             {
@@ -90,11 +90,11 @@ namespace StefaniniServer.Services
                 {
                     Db.Pessoas.Update(new Pessoa
                     {
-                        Id = pessoa.Id,
-                        Nome = pessoa.Nome,
-                        Cpf = pessoa.Cpf,
-                        IdCidade = pessoa.IdCidade,
-                        Idade = pessoa.Idade
+                        Id = person.Id,
+                        Nome = person.Nome,
+                        Cpf = person.Cpf,
+                        IdCidade = person.IdCidade,
+                        Idade = person.Idade
                     });
 
                     await Db.SaveChangesAsync();
@@ -113,11 +113,11 @@ namespace StefaniniServer.Services
             {
                 await using (var Db = new devStefaniniContext())
                 {
-                    var pessoa = Db.Pessoas.FirstOrDefault(x => x.Id == id);
+                    var person = Db.Pessoas.FirstOrDefault(x => x.Id == id);
 
-                    if (pessoa != null)
+                    if (person != null)
                     {
-                        Db.Pessoas.Remove(pessoa);
+                        Db.Pessoas.Remove(person);
                         Db.SaveChanges();
                     }
 

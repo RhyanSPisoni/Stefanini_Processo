@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace StefaniniServer.Views
 {
-    public partial class PessoaView
+    public partial class PersonView
     {
         public int Id { get; set; }
         public string Nome { get; set; } = null!;
