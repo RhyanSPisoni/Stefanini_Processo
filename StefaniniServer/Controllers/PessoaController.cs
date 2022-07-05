@@ -7,7 +7,7 @@ using StefaniniServer.Views;
 namespace StefaniniServer.Controllers
 {
     [ApiController]
-    [Route("Person")]
+    [Route("People")]
     public class PessoaController : ControllerBase
     {
         [HttpGet]
@@ -25,12 +25,12 @@ namespace StefaniniServer.Controllers
         }
 
         [HttpGet]
-        [Route("SearchPeople")]
+        [Route("Search")]
         public async Task<List<PessoaView>> SearchListPeople(List<int> ids)
         {
             try
             {
-                return await Services.ServPessoa.SearchPeople();
+                return await Services.ServPessoa.SearchListPeople(ids);
             }
             catch (Exception e)
             {
@@ -40,7 +40,7 @@ namespace StefaniniServer.Controllers
         }
 
         [HttpPost]
-        [Route("NewPeople")]
+        [Route("New")]
         public async Task<Confirmation> NewPeople([FromBody] List<Pessoa> pessoa)
         {
             try
@@ -55,7 +55,7 @@ namespace StefaniniServer.Controllers
         }
 
         [HttpPatch]
-        [Route("UpdatePeople")]
+        [Route("Update")]
         public async Task<Confirmation> UpdatePeople([FromBody] PessoaDTO pessoa)
         {
             try
@@ -69,7 +69,7 @@ namespace StefaniniServer.Controllers
         }
 
         [HttpDelete]
-        [Route("DeletePeople")]
+        [Route("Delete")]
         public async Task<Confirmation> DeletePeople([FromRoute] int id)
         {
             try

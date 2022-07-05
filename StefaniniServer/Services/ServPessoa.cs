@@ -34,6 +34,32 @@ namespace StefaniniServer.Services
             }
         }
 
+        internal async static Task<List<PessoaView>> SearchListPeople(List<int> ids)
+        {
+            try
+            {
+                await using (var Db = new devStefaniniContext())
+                {
+                    return await Db.Pessoas
+                                .AsNoTracking()
+                                .Select(x => new PessoaView
+                                {
+                                    Id = x.Id,
+                                    Nome = x.Nome,
+                                    Cpf = x.Cpf,
+                                    Cidade = x.IdCidadeNavigation.Nome,
+                                    Idade = x.Idade
+                                })
+                                .Where(x => ids.Contains(x.Id))
+                                .ToListAsync();
+                }
+            }
+            catch (System.Exception)
+            {
+                throw;
+            }
+        }
+
         internal async static Task<Confirmation> NewPeople(List<Pessoa> pessoa)
         {
             try
@@ -52,7 +78,6 @@ namespace StefaniniServer.Services
             }
             catch (System.Exception)
             {
-
                 throw;
             }
         }
@@ -63,12 +88,21 @@ namespace StefaniniServer.Services
             {
                 await using (var Db = new devStefaniniContext())
                 {
+                    Db.Pessoas.Update(new Pessoa
+                    {
+                        Id = pessoa.Id,
+                        Nome = pessoa.Nome,
+                        Cpf = pessoa.Cpf,
+                        IdCidade = pessoa.IdCidade,
+                        Idade = pessoa.Idade
+                    });
+
+                    await Db.SaveChangesAsync();
                     return new Confirmation();
                 }
             }
             catch (System.Exception)
             {
-
                 throw;
             }
         }
@@ -79,12 +113,19 @@ namespace StefaniniServer.Services
             {
                 await using (var Db = new devStefaniniContext())
                 {
+                    var pessoa = Db.Pessoas.FirstOrDefault(x => x.Id == id);
+
+                    if (pessoa != null)
+                    {
+                        Db.Pessoas.Remove(pessoa);
+                        Db.SaveChanges();
+                    }
+
                     return new Confirmation();
                 }
             }
             catch (System.Exception)
             {
-
                 throw;
             }
         }

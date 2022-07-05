@@ -8,7 +8,5 @@ namespace StefaniniServer.DTO
         public int Id { get; set; }
         public string Nome { get; set; } = null!;
         public string Uf { get; set; } = null!;
-
-        public virtual ICollection<PessoaDTO>? Pessoas { get; set; }
     }
 }
