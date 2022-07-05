@@ -1,4 +1,6 @@
 using System;
+using System.Collections.Generic;
+using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using StefaniniServer.DTO;
 using StefaniniServer.Models;
@@ -26,11 +28,11 @@ namespace StefaniniServer.Controllers
 
         [HttpGet]
         [Route("Search")]
-        public async Task<List<PersonView>> SearchListPeople(List<int> ids)
+        public async Task<List<PersonView>> SearchListPeople([FromRoute] int id)
         {
             try
             {
-                return await Services.ServPerson.SearchListPeople(ids);
+                return await Services.ServPerson.SearchListPeople(id);
             }
             catch (Exception e)
             {

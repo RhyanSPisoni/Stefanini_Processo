@@ -1,4 +1,7 @@
+using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using StefaniniServer.Data;
 using StefaniniServer.DTO;
@@ -9,7 +12,7 @@ namespace StefaniniServer.Services
 {
     public class ServPerson
     {
-        internal async static Task<List<PersonView>> SearchPeople()
+        internal static async Task<List<PersonView>> SearchPeople()
         {
             try
             {
@@ -34,7 +37,7 @@ namespace StefaniniServer.Services
             }
         }
 
-        internal async static Task<List<PersonView>> SearchListPeople(List<int> ids)
+        internal static async Task<List<PersonView>> SearchListPeople(int id)
         {
             try
             {
@@ -50,7 +53,7 @@ namespace StefaniniServer.Services
                                     Cidade = x.IdCidadeNavigation.Nome,
                                     Idade = x.Idade
                                 })
-                                .Where(x => ids.Contains(x.Id))
+                                .Where(x => x.Id == id)
                                 .ToListAsync();
                 }
             }
@@ -60,7 +63,7 @@ namespace StefaniniServer.Services
             }
         }
 
-        internal async static Task<Confirmation> NewPeople(List<Pessoa> person)
+        internal static async Task<Confirmation> NewPeople(List<Pessoa> person)
         {
             try
             {

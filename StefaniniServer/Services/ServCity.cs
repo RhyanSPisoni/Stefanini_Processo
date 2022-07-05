@@ -1,4 +1,6 @@
+using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using StefaniniServer.Data;
 using StefaniniServer.DTO;
@@ -9,7 +11,7 @@ namespace StefaniniServer.Services
 {
     public class ServCity
     {
-        internal async static Task<List<CityView>> SearchCities()
+        internal static async Task<List<CityView>> SearchCities()
         {
             try
             {
@@ -32,7 +34,7 @@ namespace StefaniniServer.Services
             }
         }
 
-        internal async static Task<List<CityView>> SearchListCities(List<int> ids)
+        internal static async Task<List<CityView>> SearchListCities(List<int> ids)
         {
             try
             {
@@ -56,21 +58,18 @@ namespace StefaniniServer.Services
             }
         }
 
-        internal async static Task<Confirmation> NewCities(List<Cidade> cities)
+        public static async Task<Confirmation> NewCities(Cidade city)
         {
             try
             {
                 await using (var Db = new devStefaniniContext())
                 {
-                    cities.ForEach(e =>
-                    {
-                        Db.Cidades.AddAsync(e);
-                    });
+                    await Db.Cidades.AddAsync(city);
 
                     await Db.SaveChangesAsync();
-
-                    return new Confirmation();
                 }
+
+                return new Confirmation();
             }
             catch (System.Exception)
             {

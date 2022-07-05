@@ -1,4 +1,6 @@
 using System;
+using System.Collections.Generic;
+using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using StefaniniServer.DTO;
 using StefaniniServer.Models;
@@ -8,7 +10,7 @@ namespace StefaniniServer.Controllers
 {
     [ApiController]
     [Route("Cities")]
-    public class CidadeController : ControllerBase
+    public class CityController : ControllerBase
     {
         [HttpGet]
         public async Task<List<CityView>> SearchCities()
@@ -41,16 +43,11 @@ namespace StefaniniServer.Controllers
 
         [HttpPost]
         [Route("New")]
-        public async Task<Confirmation> NewCities([FromBody] List<Cidade> city)
+        public async Task<Confirmation> NewCities([FromBody] Cidade city)
         {
-            try
-            {
-                return await Services.ServCity.NewCities(city);
-            }
-            catch (Exception e)
-            {
-                throw new Exception($"Erro Interno : {e.Message}");
-            }
+
+            return await Services.ServCity.NewCities(city);
+
 
         }
 
@@ -70,7 +67,7 @@ namespace StefaniniServer.Controllers
 
         [HttpDelete]
         [Route("Delete")]
-        public async Task<Confirmation> DeleteCities([FromRoute] int id)
+        public async Task<Confirmation> DeleteCities(int id)
         {
             try
             {

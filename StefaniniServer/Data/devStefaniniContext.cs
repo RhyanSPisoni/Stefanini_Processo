@@ -1,8 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.Extensions.Configuration;
 using StefaniniServer.Models;
+
+#nullable disable
 
 namespace StefaniniServer.Data
 {
@@ -17,14 +19,13 @@ namespace StefaniniServer.Data
         {
         }
 
-        public virtual DbSet<Cidade> Cidades { get; set; } = null!;
-        public virtual DbSet<Pessoa> Pessoas { get; set; } = null!;
+        public virtual DbSet<Cidade> Cidades { get; set; }
+        public virtual DbSet<Pessoa> Pessoas { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             if (!optionsBuilder.IsConfigured)
             {
-                // optionsBuilder.UseSqlServer("Name=ConnectionStrings:devStefanini");
                  IConfigurationRoot configuration = new ConfigurationBuilder()
                 .SetBasePath(AppDomain.CurrentDomain.BaseDirectory)
                 .AddJsonFile("appsettings.json")
@@ -36,20 +37,21 @@ namespace StefaniniServer.Data
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            modelBuilder.HasAnnotation("Relational:Collation", "SQL_Latin1_General_CP1_CI_AS");
+
             modelBuilder.Entity<Cidade>(entity =>
             {
-                entity.ToTable("CIDADE");
+                entity.ToTable("Cidade");
 
-                entity.Property(e => e.Id)
-                    .ValueGeneratedNever()
-                    .HasColumnName("id");
+                entity.Property(e => e.Id).HasColumnName("id");
 
                 entity.Property(e => e.Nome)
+                    .IsRequired()
                     .HasMaxLength(200)
-                    .IsUnicode(false)
-                    .HasColumnName("NOME");
+                    .IsUnicode(false);
 
                 entity.Property(e => e.Uf)
+                    .IsRequired()
                     .HasMaxLength(2)
                     .IsUnicode(false)
                     .HasColumnName("UF");
@@ -57,11 +59,12 @@ namespace StefaniniServer.Data
 
             modelBuilder.Entity<Pessoa>(entity =>
             {
-                entity.ToTable("PESSOA");
+                entity.ToTable("Pessoa");
 
                 entity.Property(e => e.Id).HasColumnName("id");
 
                 entity.Property(e => e.Cpf)
+                    .IsRequired()
                     .HasMaxLength(11)
                     .IsUnicode(false)
                     .HasColumnName("CPF");
@@ -71,6 +74,7 @@ namespace StefaniniServer.Data
                 entity.Property(e => e.Idade).HasColumnName("idade");
 
                 entity.Property(e => e.Nome)
+                    .IsRequired()
                     .HasMaxLength(300)
                     .IsUnicode(false);
 
@@ -78,7 +82,7 @@ namespace StefaniniServer.Data
                     .WithMany(p => p.Pessoas)
                     .HasForeignKey(d => d.IdCidade)
                     .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("PESSOA_fk0");
+                    .HasConstraintName("Pessoa_fk0");
             });
 
             OnModelCreatingPartial(modelBuilder);
