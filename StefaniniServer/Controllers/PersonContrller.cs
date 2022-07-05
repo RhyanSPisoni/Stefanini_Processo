@@ -4,6 +4,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using StefaniniServer.DTO;
 using StefaniniServer.Models;
+using StefaniniServer.Services;
 using StefaniniServer.Views;
 
 namespace StefaniniServer.Controllers
@@ -17,7 +18,7 @@ namespace StefaniniServer.Controllers
         {
             try
             {
-                return await Services.ServPerson.SearchPeople();
+                return await ServPerson.SearchPeople();
             }
             catch (Exception e)
             {
@@ -28,11 +29,11 @@ namespace StefaniniServer.Controllers
 
         [HttpGet]
         [Route("Search")]
-        public async Task<List<PersonView>> SearchListPeople([FromRoute] int id)
+        public async Task<List<PersonView>> SearchListPeople(int id)
         {
             try
             {
-                return await Services.ServPerson.SearchListPeople(id);
+                return await ServPerson.SearchListPeople(id);
             }
             catch (Exception e)
             {
@@ -47,7 +48,7 @@ namespace StefaniniServer.Controllers
         {
             try
             {
-                return await Services.ServPerson.NewPeople(person);
+                return await ServPerson.NewPeople(person);
             }
             catch (Exception e)
             {
@@ -62,7 +63,7 @@ namespace StefaniniServer.Controllers
         {
             try
             {
-                return await Services.ServPerson.UpdatePeople(person);
+                return await ServPerson.UpdatePeople(person);
             }
             catch (Exception e)
             {
@@ -76,7 +77,7 @@ namespace StefaniniServer.Controllers
         {
             try
             {
-                return await Services.ServPerson.DeletePeople(id);
+                return await ServPerson.DeletePeople(id);
             }
             catch (Exception e)
             {

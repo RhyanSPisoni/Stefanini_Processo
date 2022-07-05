@@ -34,6 +34,20 @@ namespace StefaniniServer
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "StefaniniServer", Version = "v1" });
             });
+
+            services.AddCors(opt =>
+            {
+                opt.AddDefaultPolicy(
+                    builder =>
+                    {
+                        builder
+                            // .AllowAnyOrigin()
+                            .AllowAnyHeader()
+                            .AllowCredentials()
+                            .AllowAnyMethod();
+                    });
+            });
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -49,6 +63,8 @@ namespace StefaniniServer
             app.UseHttpsRedirection();
 
             app.UseRouting();
+
+            app.UseCors();
 
             app.UseAuthorization();
 

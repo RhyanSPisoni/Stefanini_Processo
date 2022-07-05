@@ -4,6 +4,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using StefaniniServer.DTO;
 using StefaniniServer.Models;
+using StefaniniServer.Services;
 using StefaniniServer.Views;
 
 namespace StefaniniServer.Controllers
@@ -17,7 +18,7 @@ namespace StefaniniServer.Controllers
         {
             try
             {
-                return await Services.ServCity.SearchCities();
+                return await ServCity.SearchCities();
             }
             catch (Exception e)
             {
@@ -28,11 +29,11 @@ namespace StefaniniServer.Controllers
 
         [HttpGet]
         [Route("Search")]
-        public async Task<List<CityView>> SearchListCities(List<int> ids)
+        public async Task<CityView> SearchListCity(int id)
         {
             try
             {
-                return await Services.ServCity.SearchListCities(ids);
+                return await ServCity.SearchListCity(id);
             }
             catch (Exception e)
             {
@@ -45,10 +46,15 @@ namespace StefaniniServer.Controllers
         [Route("New")]
         public async Task<Confirmation> NewCities([FromBody] Cidade city)
         {
+            try
+            {
+                return await ServCity.NewCities(city);
+            }
+            catch (System.Exception e)
+            {
 
-            return await Services.ServCity.NewCities(city);
-
-
+                throw new Exception($"Erro Interno : {e.Message}");
+            }
         }
 
         [HttpPatch]
@@ -57,7 +63,7 @@ namespace StefaniniServer.Controllers
         {
             try
             {
-                return await Services.ServCity.UpdateCities(city);
+                return await ServCity.UpdateCities(city);
             }
             catch (Exception e)
             {
@@ -71,7 +77,7 @@ namespace StefaniniServer.Controllers
         {
             try
             {
-                return await Services.ServCity.DeleteCities(id);
+                return await ServCity.DeleteCities(id);
             }
             catch (Exception e)
             {

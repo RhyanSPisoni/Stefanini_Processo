@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -5,6 +6,7 @@ using Microsoft.EntityFrameworkCore;
 using StefaniniServer.Data;
 using StefaniniServer.DTO;
 using StefaniniServer.Models;
+using StefaniniServer.Validators;
 using StefaniniServer.Views;
 
 namespace StefaniniServer.Services
@@ -34,7 +36,7 @@ namespace StefaniniServer.Services
             }
         }
 
-        internal static async Task<List<CityView>> SearchListCities(List<int> ids)
+        internal static async Task<CityView> SearchListCity(int id)
         {
             try
             {
@@ -48,8 +50,7 @@ namespace StefaniniServer.Services
                                     Nome = x.Nome,
                                     Uf = x.Uf
                                 })
-                                .Where(x => ids.Contains(x.Id))
-                                .ToListAsync();
+                                .FirstOrDefaultAsync();
                 }
             }
             catch (System.Exception)
@@ -62,6 +63,8 @@ namespace StefaniniServer.Services
         {
             try
             {
+                ValidatorGeneral.ValidatorNullString(city.Nome);
+
                 await using (var Db = new devStefaniniContext())
                 {
                     await Db.Cidades.AddAsync(city);
@@ -71,9 +74,9 @@ namespace StefaniniServer.Services
 
                 return new Confirmation();
             }
-            catch (System.Exception)
+            catch (Exception)
             {
-                throw;
+                throw new Exception("Erro ao inserir uma nova Cidade");
             }
         }
 
