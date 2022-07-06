@@ -1,0 +1,29 @@
+CREATE TABLE [Pessoa] (
+	id integer NOT NULL IDENTITY(1,1),
+	Nome varchar(300) NOT NULL,
+	CPF varchar(11) NOT NULL,
+	id_Cidade integer NOT NULL,
+	idade integer NOT NULL,
+  CONSTRAINT [PK_PESSOA] PRIMARY KEY CLUSTERED
+  (
+  [id] ASC
+  ) WITH (IGNORE_DUP_KEY = OFF)
+
+)
+GO
+CREATE TABLE [Cidade] (
+	id integer NOT NULL IDENTITY(1,1),
+	Nome varchar(200) NOT NULL,
+	UF varchar(2) NOT NULL,
+  CONSTRAINT [PK_CIDADE] PRIMARY KEY CLUSTERED
+  (
+  [id] ASC
+  ) WITH (IGNORE_DUP_KEY = OFF)
+
+)
+GO
+ALTER TABLE [Pessoa] WITH CHECK ADD CONSTRAINT [Pessoa_fk0] FOREIGN KEY ([id_Cidade]) REFERENCES [Cidade]([id])
+ON UPDATE CASCADE
+GO
+ALTER TABLE [Pessoa] CHECK CONSTRAINT [Pessoa_fk0]
+GO
