@@ -1,0 +1,30 @@
+div.row>label {
+    margin-right: 10%;
+}
+
+button {
+    margin: none;
+    border: none;
+    padding: none;
+    flex-direction: column;
+    /* padding-top: 10%; */
+    margin-top: 20px;
+}
+
+div.row {
+    background-color: whitesmoke;
+    border-radius: 20px;
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border: 40% 40%;
+}
+
+div.row button {
+    margin-right: 10px;
+}
+
+label{
+}

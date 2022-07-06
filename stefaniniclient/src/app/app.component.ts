@@ -13,8 +13,9 @@ export class AppComponent {
 
   constructor(private data: DataService) {}
 
-  isValid: boolean = true;
-  ChangeData(valid: boolean) {
+  isValid: number = 1;
+
+  ChangeData(valid: number) {
     this.isValid = valid;
   }
 

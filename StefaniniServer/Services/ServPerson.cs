@@ -63,21 +63,18 @@ namespace StefaniniServer.Services
             }
         }
 
-        internal static async Task<Confirmation> NewPeople(List<Pessoa> person)
+        internal static async Task<Confirmation> NewPeople(Pessoa person)
         {
             try
             {
                 await using (var Db = new devStefaniniContext())
                 {
-                    person.ForEach(e =>
-                    {
-                        Db.Pessoas.AddAsync(e);
-                    });
+                    await Db.Pessoas.AddAsync(person);
 
                     await Db.SaveChangesAsync();
-
-                    return new Confirmation();
                 }
+
+                return new Confirmation();
             }
             catch (System.Exception)
             {

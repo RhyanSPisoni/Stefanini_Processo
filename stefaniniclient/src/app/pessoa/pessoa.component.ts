@@ -10,7 +10,23 @@ import { DataService } from '../services/data.service';
 export class PessoaComponent implements OnInit {
   public cidades$!: Observable<any[]>;
 
+  public nomepessoa!: string;
+  public cpfpessoa!: string;
+  public idadepessoa!: number;
+  public cidadepessoa!: number;
+
   constructor(private data: DataService) {}
+
+  submitPerson() {
+    let bodyPessoa = {
+      nome: this.nomepessoa,
+      cpf: this.cpfpessoa,
+      idCidade: this.cidadepessoa,
+      idade: this.idadepessoa,
+    };
+    console.table(bodyPessoa);
+    this.data.newPessoa(bodyPessoa).subscribe();
+  }
 
   ngOnInit(): void {
     this.cidades$ = this.data.getCidades();

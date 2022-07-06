@@ -7,16 +7,19 @@
       name="nome"
       placeholder="Digite um nome"
       required
+      [(ngModel)]="nomepessoa"
     />
   </div>
   <div class="input-box">
     <label for="cpf">CPF</label>
     <input
+      mask="###.###.###-##"
       id="cpf"
       type="text"
       name="cpf"
       placeholder="Digite um CPF"
       required
+      [(ngModel)]="cpfpessoa"
     />
   </div>
   <div class="input-box">
@@ -24,22 +27,23 @@
       <label for="idade">Idade</label>
       <input
         id="idade"
-        type="text"
+        type="number"
         name="idade"
         placeholder="Digite uma idade"
         required
+        [(ngModel)]="idadepessoa"
       />
     </div>
-    <select name="cidades" id="cidades">
-      <option *ngFor="let cidade of cidades$ | async">
+    <select name="cidades" id="cidades" [(ngModel)]="cidadepessoa">
+      <option *ngFor="let cidade of cidades$ | async" [ngValue]="cidade.id">
         {{ cidade.nome }}
       </option>
     </select>
   </div>
 </div>
 <div class="continue-button">
-  <button><a href="#">Salvar</a></button>
+  <button (click)="submitPerson()"><a href="#">Salvar</a></button>
 </div>
-<div class="continue-button">
+<!-- <div class="continue-button">
   <button>Tabela</button>
-</div>
+</div> -->

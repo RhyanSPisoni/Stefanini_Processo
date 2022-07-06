@@ -8,7 +8,7 @@ namespace StefaniniServer.Validators
         {
             if (text.Length < 1)
                 throw new Exception("Foi informado nenhum dado para essa ação");
-                
+
         }
     }
 }

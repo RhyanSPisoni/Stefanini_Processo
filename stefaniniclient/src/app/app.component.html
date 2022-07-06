@@ -3,7 +3,8 @@
     <img src="../assets/background.jpg" />
   </div>
   <div class="form">
-    <div class="cads-inputs">
+    <app-tabela *ngIf="isValid == 3"></app-tabela>
+    <div class="cads-inputs" *ngIf="isValid != 3">
       <div class="cads-title">
         <h6>Cadastro</h6>
         <div class="cads-group">
@@ -11,7 +12,7 @@
             <input
               type="radio"
               name="Pessoa"
-              (click)="ChangeData(true)"
+              (click)="ChangeData(1)"
               [defaultChecked]="true"
             />
             <label for="Pessoa">Pessoa</label>
@@ -20,7 +21,7 @@
             <input
               type="radio"
               name="Cidade"
-              (click)="ChangeData(false)"
+              (click)="ChangeData(2)"
               [defaultChecked]="false"
             />
             <label for="Cidade">Cidade</label>
@@ -28,8 +29,11 @@
         </div>
       </div>
       <form action="#">
-        <app-pessoa *ngIf="isValid"></app-pessoa>
-        <app-cidade *ngIf="!isValid"></app-cidade>
+        <app-pessoa *ngIf="isValid == 1"></app-pessoa>
+        <app-cidade *ngIf="isValid == 2"></app-cidade>
+        <div class="continue-button">
+          <button (click)="ChangeData(3)">Tabela</button>
+        </div>
       </form>
     </div>
   </div>

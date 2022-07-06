@@ -44,7 +44,7 @@ namespace StefaniniServer.Controllers
 
         [HttpPost]
         [Route("New")]
-        public async Task<Confirmation> NewPeople([FromBody] List<Pessoa> person)
+        public async Task<Confirmation> NewPeople([FromBody] Pessoa person)
         {
             try
             {

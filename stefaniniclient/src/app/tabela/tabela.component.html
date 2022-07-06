@@ -1,1 +1,18 @@
-<p>tabela works!</p>
+<div class="row" *ngFor="let pessoa of pessoas$ | async">
+  <label> Id: {{ pessoa.id }}</label>
+  <label *ngIf="pessoa.id != idifpatch"> Nome: {{ pessoa.nome }}</label>
+  <input *ngIf="pessoa.id == idifpatch" value="{{ pessoa.nome }}" />
+  <label *ngIf="pessoa.id != idifpatch"> CPF: {{ pessoa.cpf }}</label>
+  <input *ngIf="pessoa.id == idifpatch" value="{{ pessoa.cpf }}" />
+  <label *ngIf="pessoa.id != idifpatch"> Cidade: {{ pessoa.uf }}</label>
+  <input *ngIf="pessoa.id == idifpatch" value="{{ pessoa.uf }}" />
+  <label *ngIf="pessoa.id != idifpatch"> Idade: {{ pessoa.idade }}</label>
+  <input *ngIf="pessoa.id == idifpatch" value="{{ pessoa.idade }}" />
+  <button *ngIf="pessoa.id == idifpatch" (click)="onUpdateRow(pessoa)">
+    Confirmar
+  </button>
+  <button (click)="onChooseUpdate(pessoa.id)">Editar</button>
+  <button *ngIf="pessoa.id != idifpatch" (click)="onDeleteRow(pessoa.id)">
+    Deletar
+  </button>
+</div>
