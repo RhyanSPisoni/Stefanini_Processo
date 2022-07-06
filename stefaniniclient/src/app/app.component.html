@@ -1,25 +1,34 @@
-<div>
-  <form class="formCidade">
-    <strong><label>Cidade</label></strong>
-    <Label>Nome</Label>
-    <input />
-    <Label>UF</Label>
-    <input />
-  </form>
-  <button>Inserir</button>
-</div>
-
-<div>
-  <form class="formPessoa">
-    <strong><label>Pessoa</label></strong>
-    <Label>Nome</Label>
-    <input />
-    <Label>CPF</Label>
-    <input />
-    <Label>Cidade</Label>
-    <input />
-    <Label>Idade</Label>
-    <input />
-  </form>
-  <button>Inserir</button>
+<div class="container">
+  <div class="form-image">
+    <img src="../assets/background.jpg" />
+  </div>
+  <div class="form">
+    <div class="cads-inputs">
+      <div class="cads-title">
+        <h6>Cadastro</h6>
+      </div>
+      <div class="cads-group">
+        <div class="cads-input">
+          <input
+            type="radio"
+            name="Pessoa"
+            (click)="ChangeData(true)"
+            [defaultChecked]="true"
+          />
+          <label for="Pessoa">Pessoa</label>
+        </div>
+        <div class="cads-input">
+          <input type="radio" name="Cidade" (click)="ChangeData(false)" [defaultChecked]="false"/>
+          <label for="Cidade">Cidade</label>
+        </div>
+      </div>
+    </div>
+    <form action="#">
+      <app-pessoa *ngIf="isValid"></app-pessoa>
+      <app-cidade *ngIf="!isValid"></app-cidade>
+    </form>
+    <div class="continue-button">
+      <button><a href="#">Salvar</a></button>
+    </div>
+  </div>
 </div>
