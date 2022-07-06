@@ -1,14 +1,36 @@
 <div class="row" *ngFor="let pessoa of pessoas$ | async">
   <label> Id: {{ pessoa.id }}</label>
   <label *ngIf="pessoa.id != idifpatch"> Nome: {{ pessoa.nome }}</label>
-  <input *ngIf="pessoa.id == idifpatch" value="{{ pessoa.nome }}" />
+  <input
+    placeholder="Nome da Pessoa"
+    *ngIf="pessoa.id == idifpatch"
+    value="{{ pessoa.nome }}"
+    [(ngModel)]="nomepatchpessoa"
+  />
   <label *ngIf="pessoa.id != idifpatch"> CPF: {{ pessoa.cpf }}</label>
-  <input *ngIf="pessoa.id == idifpatch" value="{{ pessoa.cpf }}" />
-  <label *ngIf="pessoa.id != idifpatch"> Cidade: {{ pessoa.uf }}</label>
-  <input *ngIf="pessoa.id == idifpatch" value="{{ pessoa.uf }}" />
+  <input
+    placeholder="CPF"
+    *ngIf="pessoa.id == idifpatch"
+    value="{{ pessoa.cpf }}"
+    maxlength="11"
+    [(ngModel)]="cpfpatchpessoa"
+  />
+  <label *ngIf="pessoa.id != idifpatch"> Cidade: {{ pessoa.cidade }}</label>
+  <select name="cidades" id="cidades" [(ngModel)]="cidadepatchpessoa">
+    <option *ngFor="let cidade of cidades$ | async" [ngValue]="cidade.id">
+      {{ cidade.nome }}
+    </option>
+  </select>
+
   <label *ngIf="pessoa.id != idifpatch"> Idade: {{ pessoa.idade }}</label>
-  <input *ngIf="pessoa.id == idifpatch" value="{{ pessoa.idade }}" />
-  <button *ngIf="pessoa.id == idifpatch" (click)="onUpdateRow(pessoa)">
+  <input
+    placeholder="Idade"
+    type="number"
+    *ngIf="pessoa.id == idifpatch"
+    value="{{ pessoa.idade }}"
+    [(ngModel)]="idadepatchpessoa"
+  />
+  <button *ngIf="pessoa.id == idifpatch" (click)="onUpdateRow(pessoa.id)">
     Confirmar
   </button>
   <button (click)="onChooseUpdate(pessoa.id)">Editar</button>

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
+import { Cidade } from '../models/cidades.model';
 import { Pessoa } from '../models/pessoas.model';
 import { DataService } from '../services/data.service';
 
@@ -11,16 +12,29 @@ import { DataService } from '../services/data.service';
 export class TabelaComponent implements OnInit {
   constructor(private data: DataService) {}
   public rowidTabela!: number;
-  public idifpatch : number = 0;
+  public idifpatch: number = 0;
+
+  public nomepatchpessoa!: string;
+  public cpfpatchpessoa!: string;
+  public cidadepatchpessoa!: string;
+  public idadepatchpessoa!: string;
 
   public pessoas$!: Observable<Pessoa[]>;
+  public cidades$!: Observable<Cidade[]>;
 
   ngOnInit(): void {
     this.pessoas$ = this.data.getPessoa();
+
+    console.table(this.pessoas$);
+    this.cidades$ = this.data.getCidades();
   }
 
   onGetPessoa() {
     this.pessoas$ = this.data.getPessoa();
+  }
+
+  onLoadCidades() {
+    this.cidades$ = this.data.getCidades();
   }
 
   async onDeleteRow(data: any) {
@@ -29,7 +43,16 @@ export class TabelaComponent implements OnInit {
   }
 
   onUpdateRow(data: any) {
-    this.data.patchPessoa(data).subscribe;
+    let bodyPessoa = {
+      id: data,
+      nome: this.nomepatchpessoa,
+      cpf: this.cpfpatchpessoa,
+      idCidade: this.cidadepatchpessoa,
+      idade: this.idadepatchpessoa,
+    };
+
+    console.table(bodyPessoa);
+    this.data.patchPessoa(bodyPessoa);
   }
 
   onChooseUpdate(data: any) {

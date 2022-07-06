@@ -34,19 +34,17 @@ export class DataService {
   }
 
   newPessoa(data: any) {
-    console.log(data)
+    console.log(data);
     return this.http.post<Pessoa>(`${this.urlPessoa}/New`, data);
   }
 
   patchPessoa(data: any) {
-    return this.http.patch<Pessoa>(`${this.urlPessoa}/Update`, data);
+    return this.http
+      .patch<Pessoa>(`${this.urlPessoa}/Update`, data)
+      .subscribe();
   }
 
   deletePessoa(data: number) {
     return this.http.delete<Pessoa>(`${this.urlPessoa}/Delete/${data}`);
   }
-
-  //   getCidadesId(private id: string){
-  //     return this.http.get<any[]>('https://localhost:5001/Cities')
-  //   }
 }
