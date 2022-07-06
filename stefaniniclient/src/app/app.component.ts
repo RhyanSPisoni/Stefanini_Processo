@@ -1,4 +1,7 @@
 import { Component } from '@angular/core';
+import { Observable } from 'rxjs';
+import { Cidade } from './models/cidades.model';
+import { DataService } from './services/data.service';
 
 @Component({
   selector: 'app-root',
@@ -8,8 +11,16 @@ import { Component } from '@angular/core';
 export class AppComponent {
   title = 'stefaniniclient';
 
+  constructor(private data: DataService) {}
+
   isValid: boolean = true;
   ChangeData(valid: boolean) {
     this.isValid = valid;
+  }
+
+  public cidades$!: Observable<Cidade[]>;
+
+  ngOnInit(): void {
+    this.cidades$ = this.data.getCidades();
   }
 }

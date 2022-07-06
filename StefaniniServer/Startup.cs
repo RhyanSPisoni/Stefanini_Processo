@@ -41,7 +41,7 @@ namespace StefaniniServer
                     builder =>
                     {
                         builder
-                            // .AllowAnyOrigin()
+                            .WithOrigins("http://localhost:4200")
                             .AllowAnyHeader()
                             .AllowCredentials()
                             .AllowAnyMethod();

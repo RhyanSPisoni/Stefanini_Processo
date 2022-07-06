@@ -10,7 +10,7 @@ using StefaniniServer.Views;
 namespace StefaniniServer.Controllers
 {
     [ApiController]
-    [Route("People")]
+    [Route("Person")]
     public class PersonController : ControllerBase
     {
         [HttpGet]
@@ -72,7 +72,7 @@ namespace StefaniniServer.Controllers
         }
 
         [HttpDelete]
-        [Route("Delete")]
+        [Route("Delete/{id}")]
         public async Task<Confirmation> DeletePeople([FromRoute] int id)
         {
             try

@@ -1,23 +1,31 @@
 <div class="input-group">
   <label for="nome">Cidade</label>
   <div class="input-box">
-    <label for="nome">Nome</label>
+    <label for="nomeCid">Nome</label>
     <input
-      id="nome"
+      id="nomeCid"
       type="text"
       name="nome"
       placeholder="Digite seu primeiro nome"
       required
+      [(ngModel)]="nomecidade"
     />
   </div>
   <div class="input-box">
-    <label for="nome">UF</label>
+    <label for="ufCid">UF</label>
     <input
-      id="nome"
+      id="ufCid"
       type="text"
-      name="nome"
-      placeholder="Digite seu primeiro nome"
+      name="uf"
+      placeholder="Digite uma UF"
       required
+      [(ngModel)]="ufcidade"
     />
   </div>
+</div>
+<div class="continue-button">
+  <button (click)="submitCity()">Salvar</button>
+</div>
+<div class="continue-button">
+  <button>Tabela</button>
 </div>

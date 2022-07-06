@@ -6,29 +6,31 @@
     <div class="cads-inputs">
       <div class="cads-title">
         <h6>Cadastro</h6>
-      </div>
-      <div class="cads-group">
-        <div class="cads-input">
-          <input
-            type="radio"
-            name="Pessoa"
-            (click)="ChangeData(true)"
-            [defaultChecked]="true"
-          />
-          <label for="Pessoa">Pessoa</label>
+        <div class="cads-group">
+          <div class="cads-input">
+            <input
+              type="radio"
+              name="Pessoa"
+              (click)="ChangeData(true)"
+              [defaultChecked]="true"
+            />
+            <label for="Pessoa">Pessoa</label>
+          </div>
+          <div class="cads-input">
+            <input
+              type="radio"
+              name="Cidade"
+              (click)="ChangeData(false)"
+              [defaultChecked]="false"
+            />
+            <label for="Cidade">Cidade</label>
+          </div>
         </div>
-        <div class="cads-input">
-          <input type="radio" name="Cidade" (click)="ChangeData(false)" [defaultChecked]="false"/>
-          <label for="Cidade">Cidade</label>
-        </div>
       </div>
-    </div>
-    <form action="#">
-      <app-pessoa *ngIf="isValid"></app-pessoa>
-      <app-cidade *ngIf="!isValid"></app-cidade>
-    </form>
-    <div class="continue-button">
-      <button><a href="#">Salvar</a></button>
+      <form action="#">
+        <app-pessoa *ngIf="isValid"></app-pessoa>
+        <app-cidade *ngIf="!isValid"></app-cidade>
+      </form>
     </div>
   </div>
 </div>

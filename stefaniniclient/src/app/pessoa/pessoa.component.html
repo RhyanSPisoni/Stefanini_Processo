@@ -1,43 +1,45 @@
 <div class="input-group">
-  <label for="nome">Pessoa</label>
   <div class="input-box">
     <label for="nome">Nome</label>
     <input
       id="nome"
       type="text"
       name="nome"
-      placeholder="Digite seu primeiro nome"
+      placeholder="Digite um nome"
       required
     />
   </div>
   <div class="input-box">
-    <label for="uf">CPF</label>
+    <label for="cpf">CPF</label>
     <input
-      id="uf"
+      id="cpf"
       type="text"
-      name=""
-      placeholder="Digite seu primeiro nome"
+      name="cpf"
+      placeholder="Digite um CPF"
       required
     />
   </div>
   <div class="input-box">
-    <label for="nome">Cidade</label>
-    <input
-      id="nome"
-      type="text"
-      name="nome"
-      placeholder="Digite seu primeiro nome"
-      required
-    />
     <div class="input-box">
-      <label for="nome">Idade</label>
+      <label for="idade">Idade</label>
       <input
-        id="nome"
+        id="idade"
         type="text"
-        name="nome"
-        placeholder="Digite seu primeiro nome"
+        name="idade"
+        placeholder="Digite uma idade"
         required
       />
     </div>
+    <select name="cidades" id="cidades">
+      <option *ngFor="let cidade of cidades$ | async">
+        {{ cidade.nome }}
+      </option>
+    </select>
   </div>
+</div>
+<div class="continue-button">
+  <button><a href="#">Salvar</a></button>
+</div>
+<div class="continue-button">
+  <button>Tabela</button>
 </div>
