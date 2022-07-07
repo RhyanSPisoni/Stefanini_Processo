@@ -16,7 +16,12 @@
     [(ngModel)]="cpfpatchpessoa"
   />
   <label *ngIf="pessoa.id != idifpatch"> Cidade: {{ pessoa.cidade }}</label>
-  <select name="cidades" id="cidades" [(ngModel)]="cidadepatchpessoa">
+  <select
+    *ngIf="idifpatch == pessoa.id"
+    name="cidades"
+    id="cidades"
+    [(ngModel)]="cidadepatchpessoa"
+  >
     <option *ngFor="let cidade of cidades$ | async" [ngValue]="cidade.id">
       {{ cidade.nome }}
     </option>
@@ -33,8 +38,13 @@
   <button *ngIf="pessoa.id == idifpatch" (click)="onUpdateRow(pessoa.id)">
     Confirmar
   </button>
-  <button (click)="onChooseUpdate(pessoa.id)">Editar</button>
+  <button (click)="onChooseUpdate(pessoa.id)" (click)="AlterSelect(true)">
+    Editar
+  </button>
   <button *ngIf="pessoa.id != idifpatch" (click)="onDeleteRow(pessoa.id)">
     Deletar
   </button>
+</div>
+<div class="continue-button">
+  <button (click)="backSession()">Voltar</button>
 </div>

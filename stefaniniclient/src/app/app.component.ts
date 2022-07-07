@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Cidade } from './models/cidades.model';
 import { DataService } from './services/data.service';
@@ -13,7 +13,7 @@ export class AppComponent {
 
   constructor(private data: DataService) {}
 
-  isValid: number = 1;
+  @Input() isValid: number = 1;
 
   ChangeData(valid: number) {
     this.isValid = valid;

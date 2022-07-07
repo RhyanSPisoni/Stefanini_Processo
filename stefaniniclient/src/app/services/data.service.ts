@@ -7,8 +7,8 @@ import { Pessoa } from '../models/pessoas.model';
   providedIn: 'root',
 })
 export class DataService {
-  public urlCidade = 'https://apicontrollerperson.azurewebsites.net/City';
-  public urlPessoa = 'https://apicontrollerperson.azurewebsites.net/Person';
+  public urlCidade = 'https://apidevglobalperson.azurewebsites.net/city';
+  public urlPessoa = 'https://apidevglobalperson.azurewebsites.net/Person';
   constructor(private http: HttpClient) {}
 
   //CRUD - Cidade

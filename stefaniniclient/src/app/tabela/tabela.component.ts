@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Cidade } from '../models/cidades.model';
 import { Pessoa } from '../models/pessoas.model';
@@ -8,6 +8,7 @@ import { DataService } from '../services/data.service';
   selector: 'app-tabela',
   templateUrl: './tabela.component.html',
   styleUrls: ['./tabela.component.css'],
+  //  : '../app.component.ts'
 })
 export class TabelaComponent implements OnInit {
   constructor(private data: DataService) {}
@@ -18,6 +19,8 @@ export class TabelaComponent implements OnInit {
   public cpfpatchpessoa!: string;
   public cidadepatchpessoa!: string;
   public idadepatchpessoa!: string;
+
+  public visible: boolean = false;
 
   public pessoas$!: Observable<Pessoa[]>;
   public cidades$!: Observable<Cidade[]>;
@@ -50,11 +53,19 @@ export class TabelaComponent implements OnInit {
       idCidade: this.cidadepatchpessoa,
       idade: this.idadepatchpessoa,
     };
-    
+
     this.data.patchPessoa(bodyPessoa);
   }
 
   onChooseUpdate(data: any) {
     this.idifpatch = data;
+  }
+
+  AlterSelect(hash: boolean) {
+    this.visible = hash;
+  }
+
+  backSession() {
+    location.reload();
   }
 }

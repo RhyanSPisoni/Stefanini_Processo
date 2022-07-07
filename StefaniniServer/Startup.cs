@@ -41,7 +41,8 @@ namespace StefaniniServer
                     builder =>
                     {
                         builder
-                        .WithOrigins("https://localhost:4200")
+                        .WithOrigins("https://localhost:4200",
+                        "https://clientperson.azurewebsites.net")
                             .AllowAnyHeader()
                             .AllowCredentials()
                             .AllowAnyMethod();
