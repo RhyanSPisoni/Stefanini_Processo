@@ -1,0 +1,4 @@
+{
+    "appService.defaultWebAppToDeploy": "/subscriptions/ddabee67-e315-4018-96d7-1a354101f693/resourceGroups/appsvc_windows_centralus/providers/Microsoft.Web/sites/systempersoncity",
+    "appService.deploySubpath": "."
+}

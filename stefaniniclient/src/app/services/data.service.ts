@@ -34,7 +34,6 @@ export class DataService {
   }
 
   newPessoa(data: any) {
-    console.log(data);
     return this.http.post<Pessoa>(`${this.urlPessoa}/New`, data);
   }
 

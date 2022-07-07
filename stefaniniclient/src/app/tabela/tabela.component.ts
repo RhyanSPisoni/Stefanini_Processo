@@ -50,8 +50,7 @@ export class TabelaComponent implements OnInit {
       idCidade: this.cidadepatchpessoa,
       idade: this.idadepatchpessoa,
     };
-
-    console.table(bodyPessoa);
+    
     this.data.patchPessoa(bodyPessoa);
   }
 

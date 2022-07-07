@@ -11,7 +11,12 @@ import { FormsModule } from '@angular/forms';
 import { TabelaComponent } from './tabela/tabela.component';
 
 @NgModule({
-  declarations: [AppComponent, PessoaComponent, CidadeComponent, TabelaComponent],
+  declarations: [
+    AppComponent,
+    PessoaComponent,
+    CidadeComponent,
+    TabelaComponent,
+  ],
   imports: [BrowserModule, AppRoutingModule, HttpClientModule, FormsModule],
   providers: [],
   bootstrap: [AppComponent],

@@ -1,5 +1,3 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@100; 200; 300; 400; 500; 600&display=swap');
-
 * {
     padding: 0;
     margin: 0;
@@ -32,7 +30,7 @@ body {
 }
 
 .form-image img {
-    width: 31rem
+    width: 31rem;
 }
 
 .form {
@@ -40,7 +38,6 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    /* flex-direction: column; */
     background-color: #fff;
     border: none;
     padding: 3rem;
@@ -66,7 +63,7 @@ button {
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
-    padding: 1rem 0
+    padding: 1rem 0;
 }
 
 .input-box {
@@ -87,7 +84,7 @@ button {
     display: flex;
     justify-content: space-between;
     margin-top: 0.62rem;
-    padding: 0 0 .5rem
+    padding: 0 0 .5rem;
 }
 
 .cads-input {
@@ -114,31 +111,3 @@ button {
     border-radius: 5px;
     cursor: pointer;
 }
-
-/* 
-@media screen and (max-width:700px) {
-    .form-image {
-        display: column;
-    }
-
-    .container {
-        width: 50%
-    }
-
-    .form {
-        width: 100%
-    }
-}
-
-@media scren and (max-width: 400px) {
-    .container {
-        width: 90%;
-        height: auto;
-    }
-
-    .input-group {
-        flex-direction: column;
-        overflow-y: scroll;
-        flex-wrap: nowrap;
-    }
-} */

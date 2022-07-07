@@ -30,6 +30,5 @@ export class PessoaComponent implements OnInit {
 
   ngOnInit(): void {
     this.cidades$ = this.data.getCidades();
-    console.log(this.data.getCidades());
   }
 }

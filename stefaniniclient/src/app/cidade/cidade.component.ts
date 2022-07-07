@@ -10,7 +10,7 @@ import { DataService } from '../services/data.service';
 })
 export class CidadeComponent implements OnInit {
   @Input() cidade!: Cidade;
-  
+
   public nomecidade!: string;
   public ufcidade!: string;
 
@@ -26,7 +26,7 @@ export class CidadeComponent implements OnInit {
       nome: this.nomecidade,
       uf: this.ufcidade,
     };
-    // console.table(bodyCidade);
+
     this.data.newCidade(bodyCidade).subscribe();
   }
 }
